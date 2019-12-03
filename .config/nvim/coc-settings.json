@@ -1,0 +1,9 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "javascript", "javascriptreact", "typescript", "typescriptreact", "json"],
+  "diagnostic.messageTarget": "echo",
+  "prettier.requireConfig": true,
+  "diagnostic.errorSign": "•",
+  "diagnostic.warningSign": "•",
+  "diagnostic.infoSign": "•",
+  "diagnostic.hintSign": "•"
+}
