@@ -1,9 +1,22 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "javascript", "javascriptreact", "typescript", "typescriptreact", "json"],
+  "coc.preferences.formatOnSaveFiletypes": ["css",  "scss", "Markdown", "javascript", "javascriptreact", "typescript", "typescriptreact", "json"],
   "diagnostic.messageTarget": "echo",
   "prettier.requireConfig": true,
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
-  "diagnostic.hintSign": "•"
+  "diagnostic.hintSign": "•",
+  "languageserver": {
+	"bash": {
+	  "command": "bash-language-server",
+	  "args": ["start"],
+	  "filetypes": ["sh"],
+	  "ignoredRootPaths": ["~"]
+	},
+	"dockerfile": {
+	  "command": "docker-langserver",
+	  "filetypes": ["dockerfile"],
+	  "args": ["--stdio"]
+	}
+  }
 }
