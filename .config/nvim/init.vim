@@ -78,6 +78,8 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 autocmd VimResized * execute "normal! \<c-w>="
 
 " Settings
+set showcmd
+set autoindent
 syntax enable
 colorscheme OceanicNext
 set cmdheight=1                     " set command view height
@@ -106,6 +108,9 @@ set colorcolumn=120                 " display a column after 120
 set foldmethod=indent               " fold with indentation method
 set foldlevelstart=99               " no initial folding
 set updatetime=1000                 " when to execute CursorHold
+" this makes sure that shell scripts are highlighted
+" as bash scripts and not sh scripts
+let g:is_posix = 1
 
 " use gui background/foreground
 if (has("termguicolors"))
@@ -120,7 +125,7 @@ augroup CursorLine
 augroup END
 
 " italic comment highlight
-highlight Comment cterm=italic
+highlight Comment cterm=italic gui=italic
 
 " remove underline from cursrorline
 highlight CursorLine cterm=NONE
@@ -141,10 +146,10 @@ nnoremap <leader>d :NERDTreeToggle<cr>
 nnoremap <leader>D :NERDTreeFind<cr>
 
 " write/quit
-noremap <leader>s :w<cr>
-inoremap <leader>s <esc>:w<cr>
-nnoremap <leader>q :q<cr>
-inoremap <leader>q <esc>:q<cr>
+inoremap <C-s> <esc>:w<cr>
+noremap  <C-s> :w<cr>
+inoremap <C-q> <esc>:q<cr>
+nnoremap <C-q> :q<cr>
 nnoremap <leader>Q :q!<cr>
 inoremap <leader>Q <esc>:q!<cr>
 
