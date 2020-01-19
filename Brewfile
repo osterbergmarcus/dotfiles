@@ -1,0 +1,8 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+brew "bat"
+brew "neovim"
+brew "ripgrep"
+brew "tmux"
+cask "alacritty"
