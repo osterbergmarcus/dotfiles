@@ -1,5 +1,5 @@
 # dotfiles
-[Alacritty](https://github.com/jwilm/alacritty) + [Oh My Zsh](https://ohmyz.sh/) + [Tmux](https://github.com/tmux/tmux) +  [Neovim](https://github.com/neovim/neovim) = 🔑
+This setup requires [Alacritty](https://github.com/jwilm/alacritty), [Oh My Zsh](https://ohmyz.sh/), [Tmux](https://github.com/tmux/tmux), [Neovim](https://github.com/neovim/neovim)
 
 ## What is this?
 My web dev environment using vim with language support for python, typescript, javascript.
