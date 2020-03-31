@@ -73,7 +73,7 @@ ZSH_THEME="simple"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z zsh-syntax-highlighting osx zsh-autosuggestions httpie)
+plugins=(git z zsh-syntax-highlighting osx zsh-autosuggestions httpie docker-compose chrome-cli)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,6 +104,7 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias zshrc="nvim ~/.zshrc"
 alias v="nvim"
+alias c="chrome-cli"
 
 # z history
 export HISTCONTROL=ignoreboth:erasedups

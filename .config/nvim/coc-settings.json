@@ -1,11 +1,17 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["css",  "scss", "Markdown", "javascript", "javascriptreact", "typescript", "typescriptreact", "json"],
+  "coc.preferences.formatOnSaveFiletypes": ["css",  "scss", "Markdown", "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "python", "html"],
   "diagnostic.messageTarget": "echo",
   "prettier.requireConfig": true,
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
   "diagnostic.hintSign": "•",
+  "python.jediEnabled": false,
+  "python.formatting.provider": "black",
+  "python.linting.flake8Enabled": true,
+  "python.formatting.blackPath": "${workspaceFolder}/venv/bin/black",
+  "python.linting.flake8Path": "${workspaceFolder}/venv/bin/flake8",
+  "python.pythonPath": "/usr/local/bin/python3",
   "languageserver": {
 	"bash": {
 	  "command": "bash-language-server",

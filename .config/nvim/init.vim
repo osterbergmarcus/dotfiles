@@ -20,7 +20,6 @@ let g:NERDTrimTrailingWhitesace = 1
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-let $FZF_DEFAULT_COMMAND='rg --files --smart-case'
 
 Plug 'vim-airline/vim-airline'
 let g:airline_powerline_fonts = 1
@@ -140,8 +139,7 @@ nnoremap <leader><Tab> :e#<cr>
 nnoremap <leader>b :Buffers<cr>
 
 " Files/folders
-nnoremap <leader>p :Files<cr>
-nnoremap <leader>f :Rg<Space>
+nnoremap <C-p> :Files<cr>
 nnoremap <leader>d :NERDTreeToggle<cr>
 nnoremap <leader>D :NERDTreeFind<cr>
 
@@ -170,11 +168,13 @@ vnoremap Q :norm @q<cr>
 nnoremap <leader>pwf :echo expand("%p")<CR>
 nnoremap <CR> :nohlsearch<cr><cr>
 nnoremap <leader>a ggVG
-nnoremap <leader>conf :vsplit ~/.config/<cr>
+nnoremap <leader>conf :vsplit $MYVIMRC<cr>
 " fast escapse
 inoremap jj <ESC>
 
 " CoC mappings
+" show server logs
+nmap <leader>cl :CocCommand workspace.showOutput<CR>
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
 			\ pumvisible() ? "\<C-n>" :
