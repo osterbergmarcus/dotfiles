@@ -20,23 +20,16 @@ let g:NERDTrimTrailingWhitesace = 1
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
-Plug 'vim-airline/vim-airline'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_nr_type = 2
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#hunks#enabled = 0
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline_inactive_collapse=0
-let g:airline_section_a = ''
-let g:airline_section_c = '%t'
-let g:airline_section_x = ''
-let g:airline_section_y = ''
-let g:airline_section_z = '%l'
-let g:airline_theme='oceanicnext'
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+\ 'active': {
+\   'left': [ [ 'mode', 'paste' ],
+\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+\ },
+\ 'component_function': {
+\   'gitbranch': 'FugitiveHead'
+\ },
+\ }
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
