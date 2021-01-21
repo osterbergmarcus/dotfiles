@@ -1,4 +1,4 @@
-" Plugins
+
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
     silent execute "curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
@@ -48,7 +48,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'mxw/vim-jsx'
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
@@ -193,6 +192,8 @@ nmap <leader>rn <Plug>(coc-rename)
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>t diagnostics<cr>
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -209,6 +210,15 @@ function! s:show_documentation()
 	call CocAction('doHover')
   endif
 endfunction
+
+" Multi cursor
+nmap <expr> <silent> <C-n> <SID>select_current_word()
+function! s:select_current_word()
+  if !get(g:, 'coc_cursors_activated', 0)
+    return "\<Plug>(coc-cursors-word)"
+  endif
+  return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
+endfunc
 
 " Auto commands
 autocmd  FileType fzf set laststatus=0 noruler
