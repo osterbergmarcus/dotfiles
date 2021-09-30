@@ -1,5 +1,16 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["css",  "scss", "Markdown", "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "python", "html"],
+  "coc.preferences.formatOnSaveFiletypes": [
+	"css",
+	"scss",
+	"Markdown",
+	"javascript",
+	"javascriptreact",
+	"typescript",
+	"typescriptreact",
+	"json",
+	"python",
+	"html"
+  ],
   "diagnostic.messageTarget": "echo",
   "prettier.requireConfig": true,
   "diagnostic.errorSign": "•",
@@ -9,20 +20,20 @@
   "python.jediEnabled": false,
   "python.formatting.provider": "black",
   "python.linting.flake8Enabled": true,
-  "python.formatting.blackPath": "${workspaceFolder}/venv/bin/black",
-  "python.linting.flake8Path": "${workspaceFolder}/venv/bin/flake8",
+  "python.formatting.blackPath": "${workspaceFolder}/env/bin/black",
+  "python.linting.flake8Path": "${workspaceFolder}/env/bin/flake8",
   "python.pythonPath": "/usr/local/bin/python3",
+  "explorer.icon.enableNerdfont": true,
   "languageserver": {
-	"bash": {
-	  "command": "bash-language-server",
-	  "args": ["start"],
-	  "filetypes": ["sh"],
-	  "ignoredRootPaths": ["~"]
-	},
 	"dockerfile": {
 	  "command": "docker-langserver",
 	  "filetypes": ["dockerfile"],
 	  "args": ["--stdio"]
+	},
+	"bash": {
+	  "command": "bash-language-server",
+	  "args": ["start"],
+	  "filetypes": ["sh"]
 	}
   }
 }
