@@ -1,64 +1,54 @@
-
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-    silent execute "curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+if has("nvim")
+  let g:plug_home = stdpath('data') . '/plugged'
 endif
 
-" Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
-call plug#begin('~/.local/share/nvim/plugged')
-
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-let g:NERDTreeChDirMode = 1
-let g:NERDTreeMinimalUI = 1
-let NERDTreeShowHidden = 1
-let NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▿'
+call plug#begin()
 
 Plug 'scrooloose/nerdcommenter'
 let g:NERDTrimTrailingWhitesace = 1
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'itchyny/lightline.vim'
-let g:lightline = {
-\ 'active': {
-\   'left': [ [ 'mode', 'paste' ],
-\             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-\ },
-\ 'component_function': {
-\   'gitbranch': 'FugitiveHead'
-\ },
-\ }
-
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = [
-\ 'coc-snippets',
-\ 'coc-eslint',
-\ 'coc-prettier',
-\ 'coc-pairs',
-\ 'coc-css',
-\ 'coc-html',
-\ 'coc-json',
-\ 'coc-tsserver'
-\ ]
-
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'hoob3rt/lualine.nvim'
 Plug 'pangloss/vim-javascript'
 Plug 'junegunn/vim-easy-align'
-Plug 'mxw/vim-jsx'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'ryanoasis/vim-devicons'
-Plug 'yuttie/comfortable-motion.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = [
+\ 'coc-snippets',
+\ 'coc-eslint',
+\ 'coc-prettier',
+\ 'coc-pairs',
+\ 'coc-json',
+\ 'coc-deno',
+\ 'coc-css',
+\ 'coc-python',
+\ 'coc-sh',
+\ 'coc-tsserver',
+\ 'coc-explorer'
+\ ]
+
+" Python
+let g:loaded_python_provider = 0
+let g:python3_host_prog = "/usr/local/bin/python3"
 
 " Theme
-Plug 'mhartington/oceanic-next'
+"Plug 'mhartington/oceanic-next'
+Plug 'overcache/NeoSolarized'
 
 call plug#end()
+
 
 
 " Auto commands
@@ -72,7 +62,7 @@ autocmd VimResized * execute "normal! \<c-w>="
 set showcmd
 set autoindent
 syntax enable
-colorscheme OceanicNext
+colorscheme NeoSolarized
 set cmdheight=1                     " set command view height
 set noshowmode                      " don't display insert/normal/visual mode, we have a status line for that
 set scrolloff=5                     " scroll 5 lines before start/end of viewport
@@ -98,7 +88,11 @@ set hlsearch                        " highlight all search matches
 set colorcolumn=120                 " display a column after 120
 set foldmethod=indent               " fold with indentation method
 set foldlevelstart=99               " no initial folding
-set updatetime=1000                 " when to execute CursorHold
+set updatetime=300                 " when to execute CursorHold
+set shortmess+=c 					" Don't pass messages to ins-completion-menu
+set nobackup
+set nowritebackup
+
 " this makes sure that shell scripts are highlighted
 " as bash scripts and not sh scripts
 let g:is_posix = 1
@@ -121,19 +115,33 @@ highlight Comment cterm=italic gui=italic
 " remove underline from cursrorline
 highlight CursorLine cterm=NONE
 
+" integrate tmix clipboard
+ let g:clipboard = {
+\   'name': 'tmuxClipboard',
+\   'copy': {
+\      '+': 'tmux load-buffer -',
+\      '*': 'tmux load-buffer -',
+\    },
+\   'paste': {
+\      '+': 'tmux save-buffer -',
+\      '*': 'tmux save-buffer -',
+\   },
+\   'cache_enabled': 1,
+\ }
+
+
 " Key mappings
 let mapleader = ';'
 
-" Buffers
-nnoremap <tab> :bnext<CR>
-nnoremap <s-tab> :bprevious<CR>
-nnoremap <leader><Tab> :e#<cr>
-nnoremap <leader>b :Buffers<cr>
+" Tabs
+nnoremap <C-t> :tabedit<CR>
+nnoremap <S-tab> :tabprev<CR>
 
 " Files/folders
-nnoremap <C-p> :Files<cr>
-nnoremap <leader>d :NERDTreeToggle<cr>
-nnoremap <leader>D :NERDTreeFind<cr>
+nnoremap <C-p> <cmd>Telescope find_files<cr>
+nnoremap <C-f> <cmd>Telescope live_grep<cr>
+nnoremap <silent> \\ <cmd>Telescope buffers<cr>
+nnoremap <leader>e :CocCommand explorer<CR>
 
 " write/quit
 inoremap <C-s> <esc>:w<cr>
@@ -142,9 +150,6 @@ inoremap <C-q> <esc>:q<cr>
 nnoremap <C-q> :q<cr>
 nnoremap <leader>Q :q!<cr>
 inoremap <leader>Q <esc>:q!<cr>
-
-" Tabs
-nnoremap <C-l> gt
 
 " Window controlers
 noremap <C-l> <C-w>l
@@ -164,71 +169,16 @@ nnoremap <leader>conf :vsplit $MYVIMRC<cr>
 " fast escapse
 inoremap jj <ESC>
 
-" CoC mappings
-" show server logs
-nmap <leader>cl :CocCommand workspace.showOutput<CR>
-" Use tab for trigger completion with characters ahead and navigate.
-inoremap <silent><expr> <TAB>
-			\ pumvisible() ? "\<C-n>" :
-			\ <SID>check_back_space() ? "\<TAB>" :
-			\ coc#refresh()
-
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-let g:coc_snippet_next = '<tab>'
-
-" Use <c-space> for trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Use `[c` and `]c` for navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-" Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>t diagnostics<cr>
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K for show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-	call CocAction('doHover')
-  endif
-endfunction
-
-" Multi cursor
-nmap <expr> <silent> <C-n> <SID>select_current_word()
-function! s:select_current_word()
-  if !get(g:, 'coc_cursors_activated', 0)
-    return "\<Plug>(coc-cursors-word)"
-  endif
-  return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
-endfunc
-
-" Auto commands
-autocmd  FileType fzf set laststatus=0 noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 ruler
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 
 au BufRead,BufNewFile .eslintrc set filetype=json
-autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
