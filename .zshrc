@@ -7,7 +7,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # Lang
 export LANG=en_US.UTF-8
 
-export TERM="xterm-256color"
+if [[ $TERM == xterm ]]; then
+    TERM=xterm-256color
+fi
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -38,7 +40,7 @@ ZSH_THEME="simple"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -73,7 +75,7 @@ ZSH_THEME="simple"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z zsh-syntax-highlighting osx zsh-autosuggestions httpie docker-compose chrome-cli)
+plugins=(git z zsh-syntax-highlighting osx zsh-autosuggestions zsh-autopair httpie docker-compose chrome-cli)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -89,6 +91,7 @@ if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
   export EDITOR='nvim'
+  export TERMINAL="alacritty"
 fi
 
 # Compilation flags
@@ -100,11 +103,16 @@ fi
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias zshrc="nvim ~/.zshrc"
-alias v="nvim"
 alias c="chrome-cli"
+alias v="nvim"
+
+# remap binaries
+alias cat="bat"
+alias ls="exa"
+alias grep="rg"
+alias ps="procs"
+
 
 # z history
 export HISTCONTROL=ignoreboth:erasedups
@@ -113,7 +121,9 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_DUPS
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# deno
+export DENO_INSTALL="$HOME/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
 
 # nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -124,3 +134,12 @@ if [ -f $HOME/.tnsrc ]; then
     source $HOME/.tnsrc
 fi
 ###-tns-completion-end-###
+
+# android sdk
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
