@@ -16,6 +16,7 @@ fi
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="simple"
+export BAT_THEME="base16"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -120,6 +121,9 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_DUPS
+
+# node path
+export NODE_PATH=`which node`
 
 # deno
 export DENO_INSTALL="$HOME/.deno"
