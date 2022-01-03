@@ -15,6 +15,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'junegunn/vim-easy-align'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'elixir-editors/vim-elixir'
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
@@ -36,7 +37,8 @@ let g:coc_global_extensions = [
 \ 'coc-python',
 \ 'coc-sh',
 \ 'coc-tsserver',
-\ 'coc-explorer'
+\ 'coc-explorer',
+\ 'coc-elixir'
 \ ]
 
 " Python
@@ -57,6 +59,9 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " resize windows when terminal was resized
 autocmd VimResized * execute "normal! \<c-w>="
+
+"autocmd BufWritePost *.exs,*.ex silent :!mix format
+
 
 " Settings
 set showcmd
@@ -115,20 +120,8 @@ highlight Comment cterm=italic gui=italic
 " remove underline from cursrorline
 highlight CursorLine cterm=NONE
 
-" integrate tmix clipboard
- let g:clipboard = {
-\   'name': 'tmuxClipboard',
-\   'copy': {
-\      '+': 'tmux load-buffer -',
-\      '*': 'tmux load-buffer -',
-\    },
-\   'paste': {
-\      '+': 'tmux save-buffer -',
-\      '*': 'tmux save-buffer -',
-\   },
-\   'cache_enabled': 1,
-\ }
-
+" clipboard
+set clipboard=unnamedplus
 
 " Key mappings
 let mapleader = ';'
@@ -179,6 +172,8 @@ else
 endif
 
 au BufRead,BufNewFile .eslintrc set filetype=json
+
+au TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=true}
 
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
