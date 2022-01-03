@@ -9,6 +9,10 @@ See [extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#
 ### install brew files
 `brew bundle`
 
+### install rust binaries
+cargo install exa procs ripgrep
+cargo install --locked bat
+
 ### italic fonts and true color in tmux
 - check if italic fonts are supported
 ```
