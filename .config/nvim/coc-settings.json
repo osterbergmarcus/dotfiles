@@ -9,7 +9,9 @@
 	"typescriptreact",
 	"json",
 	"python",
-	"html"
+	"html",
+	"elixir",
+	"eelixir"
   ],
   "diagnostic.messageTarget": "echo",
   "prettier.requireConfig": true,
@@ -23,6 +25,8 @@
   "python.formatting.blackPath": "${workspaceFolder}/env/bin/black",
   "python.linting.flake8Path": "${workspaceFolder}/env/bin/flake8",
   "python.pythonPath": "/usr/local/bin/python3",
+  "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh",
+  "codeLens.enable": true,
   "explorer.icon.enableNerdfont": true,
   "languageserver": {
 	"dockerfile": {

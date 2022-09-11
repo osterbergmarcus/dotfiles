@@ -146,4 +146,8 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+# elixir
+export PATH=$PATH:"/usr/local/bin/elixir"
+export PATH=$PATH:"/usr/local/bin/mix"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

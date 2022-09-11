@@ -9,7 +9,7 @@ let g:NERDTrimTrailingWhitesace = 1
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'hoob3rt/lualine.nvim'
 Plug 'pangloss/vim-javascript'
 Plug 'junegunn/vim-easy-align'
@@ -22,28 +22,27 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'ryanoasis/vim-devicons'
-Plug 'junegunn/goyo.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 let g:coc_global_extensions = [
 \ 'coc-snippets',
 \ 'coc-eslint',
 \ 'coc-prettier',
 \ 'coc-pairs',
 \ 'coc-json',
-\ 'coc-deno',
 \ 'coc-css',
 \ 'coc-python',
 \ 'coc-sh',
 \ 'coc-tsserver',
 \ 'coc-explorer',
-\ 'coc-elixir'
+\ 'coc-elixir',
+\ 'coc-tailwindcss'
 \ ]
 
 " Python
-let g:loaded_python_provider = 0
-let g:python3_host_prog = "/usr/local/bin/python3"
+let g:python3_host_prog = "/usr/bin/python3"
 
 " Theme
 "Plug 'mhartington/oceanic-next'
@@ -172,6 +171,7 @@ else
 endif
 
 au BufRead,BufNewFile .eslintrc set filetype=json
+au BufRead,BufNewFile *ex,*.eex,*.heex,*.leex,*.sface,*.lexs set filetype=elixir
 
 au TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=true}
 
