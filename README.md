@@ -9,6 +9,13 @@ See [extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#
 ### install brew files
 `brew bundle`
 
+### setup elixir language server
+*Requires `elixir-ls` in your home path*
+- `cd ~/.elixir-ls`
+- `mix deps.get`
+- `mix deps.compile`
+- `mix elixir_ls.release -o release`
+
 ### install rust binaries
 cargo install exa procs ripgrep
 cargo install --locked bat
