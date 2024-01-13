@@ -70,7 +70,7 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z zsh-syntax-highlighting zsh-autosuggestions zsh-autopair)
+plugins=(asdf git z zsh-syntax-highlighting zsh-autosuggestions zsh-autopair)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -109,19 +109,11 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_DUPS
 
-# node path
-export NODE_PATH=`which node`
-
 # python path
 export PATH=`where python3`:$PATH
-
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# elixir
-export PATH=$PATH:"/usr/local/bin/elixir"
-export PATH=$PATH:"/usr/local/bin/mix"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
