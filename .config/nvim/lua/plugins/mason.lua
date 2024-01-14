@@ -1,12 +1,9 @@
 return {
 	{
-		"nvim-treesitter/nvim-treesitter",
+		"williamboman/mason.nvim",
 		opts = function(_, opts)
 			vim.list_extend(opts.ensure_installed, {
-				"elixir",
-				"scss",
-				"css",
-				"heex",
+				"elixir-ls",
 			})
 		end,
 	},

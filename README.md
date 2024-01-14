@@ -56,17 +56,6 @@ npm install -g dockerfile-language-server-nodejs
 git clone https://github.com/elixir-lsp/elixir-ls.git ~/.elixir-ls
 ```
 
-### setup Elixir LSP
-
-_Requires elixir-ls in your home path_
-
-```bash
-cd ~/.elixir-ls
-mix deps.get
-mix deps.compile
-mix elixir_ls.release -o release
-```
-
 ### install fzf key-bindings
 
 `$(brew --prefix)/opt/fzf/install`
