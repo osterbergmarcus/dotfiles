@@ -53,7 +53,6 @@ rm -rf ~/.config/nvim/.git
 ```bash
 npm install -g bash-language-server
 npm install -g dockerfile-language-server-nodejs
-git clone https://github.com/elixir-lsp/elixir-ls.git ~/.elixir-ls
 ```
 
 ### install fzf key-bindings
